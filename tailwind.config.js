@@ -5,6 +5,9 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    fontFamily:{
+      p_sans:['Public Sans'],
+    }
   },
   plugins: [],
 }
