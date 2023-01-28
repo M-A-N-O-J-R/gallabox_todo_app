@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { Todo } from "../models/Todo";
 
-
 interface DisplayItemProps {
   todo: Todo;
   handleDelete: (id: number) => void;
-  handleSave:(todo:Todo)=>void;
+  handleSave: (todo: Todo) => void;
 }
 const DisplayItem: React.FC<DisplayItemProps> = ({
   todo,
@@ -53,11 +52,7 @@ const DisplayItem: React.FC<DisplayItemProps> = ({
         </div>
       ) : (
         <div className="flex gap-5 justify-center items-center">
-          <input
-            type="checkbox"
-            checked={checked}
-            onChange={handleChange}
-          />
+          <input type="checkbox" checked={checked} onChange={handleChange} />
           <p className="rounded-[4px] w-48 h-[30px] p-1 text-sm font-medium text-gray-500 border-transparent ">
             {todo.todo}
           </p>

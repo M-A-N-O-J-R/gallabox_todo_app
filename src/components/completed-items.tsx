@@ -2,19 +2,19 @@ import React, { useState } from "react";
 import { Todo } from "../models/Todo";
 import DisplayItem from "./display-item";
 
-interface DisplayItemsProps {
+interface CompletedItemsProps {
   todos: Todo[];
   setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
 }
 
-const DisplayItems: React.FC<DisplayItemsProps> = ({ todos, setTodos }) => {
+const CompletedItems: React.FC<CompletedItemsProps> = ({ todos, setTodos }) => {
   const handleDelete = (id: number) => {
     const newTodos = todos.filter((todo: Todo) => id !== todo.id);
     setTodos(newTodos);
   };
   const handleSave = (task: Todo) => {
     const newTodos = todos.filter((todo: Todo) => task.id !== todo.id);
-    setTodos([...newTodos,task]);
+    setTodos([...newTodos, task]);
   };
   return (
     <div className=" flex flex-col items-start justify-center gap-3">
@@ -39,4 +39,4 @@ const DisplayItems: React.FC<DisplayItemsProps> = ({ todos, setTodos }) => {
   );
 };
 
-export default DisplayItems;
+export default CompletedItems;

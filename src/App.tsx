@@ -13,12 +13,13 @@ const App: React.FC = () => {
     let newTodos: Todo[];
     newTodos=[...todos,{id:Math.floor(Math.random()*100),todo:todo}];
     setTodos(newTodos);
-    console.log(todos);
+    setTodo('');
   }
   return (
     <div className="App box-border p-[30px] flex flex-col gap-7">
       <AddItem todo={todo} setTodo={setTodo} handleSubmit={handleSubmit} />
       <DisplayItems todos={todos} setTodos={setTodos} />
+      
     </div>
   );
 };
