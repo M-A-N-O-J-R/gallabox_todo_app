@@ -1,28 +1,34 @@
 import React, { useState } from "react";
 import { Todo } from "../models/Todo";
 
-interface DisplayItemProps {
+interface CompletedItemProps {
   todo: Todo;
   handleDelete: (id: number) => void;
   handleSave: (todo: Todo) => void;
+  handleChange: (todo: Todo) => void;
 }
-const DisplayItem: React.FC<DisplayItemProps> = ({
+const CompletedItem: React.FC<CompletedItemProps> = ({
   todo,
   handleDelete,
   handleSave,
+  handleChange,
 }) => {
   const [edit, setEdit] = useState<boolean>(true);
   const [task, setTask] = useState<Todo>(todo);
-  const [checked, setChecked] = React.useState(false);
-  const handleChange = () => {
-    console.log(checked);
+  const [checked, setChecked] = React.useState(true);
+  const handleChangeSatus = (task: Todo) => {
     setChecked(!checked);
+    handleChange(task);
   };
   return (
     <div className=" flex flex-col items-start justify-center gap-3">
       {!edit ? (
         <div className="flex gap-5 justify-center items-center">
-          <input type="checkbox" checked={checked} onChange={handleChange} />
+          <input
+            type="checkbox"
+            checked={checked}
+            onChange={() => handleChangeSatus(task)}
+          />
           <input
             value={task.todo}
             onChange={(e) => {
@@ -52,8 +58,12 @@ const DisplayItem: React.FC<DisplayItemProps> = ({
         </div>
       ) : (
         <div className="flex gap-5 justify-center items-center">
-          <input type="checkbox" checked={checked} onChange={handleChange} />
-          <p className="rounded-[4px] w-48 h-[30px] p-1 text-sm font-medium text-gray-500 border-transparent ">
+          <input
+            type="checkbox"
+            checked={checked}
+            onChange={() => handleChangeSatus(task)}
+          />
+          <p className="line-through rounded-[4px] w-48 h-[30px] p-1 text-sm font-medium text-gray-500 border-transparent ">
             {todo.todo}
           </p>
 
@@ -80,4 +90,4 @@ const DisplayItem: React.FC<DisplayItemProps> = ({
   );
 };
 
-export default DisplayItem;
+export default CompletedItem;

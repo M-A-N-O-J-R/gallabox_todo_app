@@ -5,17 +5,28 @@ import DisplayItem from "./display-item";
 interface DisplayItemsProps {
   todos: Todo[];
   setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
+  completedItems: Todo[];
+  setCompletedItems: React.Dispatch<React.SetStateAction<Todo[]>>;
 }
 
-const DisplayItems: React.FC<DisplayItemsProps> = ({ todos, setTodos }) => {
+const DisplayItems: React.FC<DisplayItemsProps> = ({
+  todos,
+  setTodos,
+  completedItems,
+  setCompletedItems,
+}) => {
   const handleDelete = (id: number) => {
     const newTodos = todos.filter((todo: Todo) => id !== todo.id);
     setTodos(newTodos);
   };
   const handleSave = (task: Todo) => {
     const newTodos = todos.filter((todo: Todo) => task.id !== todo.id);
-    setTodos([...newTodos,task]);
+    setTodos([...newTodos, task]);
   };
+  const handleChange = (task:Todo) =>{
+    handleDelete(task.id);
+    setCompletedItems([...completedItems,task]); 
+  }
   return (
     <div className=" flex flex-col items-start justify-center gap-3">
       <div className=" w-[300px] border-b-2 border-gray-800 flex justify-start items-center font-p_sans font-semibold text-sm">
@@ -28,6 +39,7 @@ const DisplayItems: React.FC<DisplayItemsProps> = ({ todos, setTodos }) => {
             key={todo.id}
             handleDelete={handleDelete}
             handleSave={handleSave}
+            handleChange={handleChange}
           />
         ))
       ) : (

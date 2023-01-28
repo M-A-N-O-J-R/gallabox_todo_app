@@ -1,29 +1,34 @@
 import React, { useState } from "react";
 import { Todo } from "../models/Todo";
 
-
 interface DisplayItemProps {
   todo: Todo;
   handleDelete: (id: number) => void;
-  handleSave:(todo:Todo)=>void;
+  handleSave: (todo: Todo) => void;
+  handleChange: (todo: Todo) => void;
 }
 const DisplayItem: React.FC<DisplayItemProps> = ({
   todo,
   handleDelete,
   handleSave,
+  handleChange,
 }) => {
   const [edit, setEdit] = useState<boolean>(true);
   const [task, setTask] = useState<Todo>(todo);
   const [checked, setChecked] = React.useState(false);
-  const handleChange = () => {
-    console.log(checked);
+  const handleChangeSatus = (task: Todo) => {
     setChecked(!checked);
+    handleChange(task);
   };
   return (
     <div className=" flex flex-col items-start justify-center gap-3">
       {!edit ? (
         <div className="flex gap-5 justify-center items-center">
-          <input type="checkbox" checked={checked} onChange={handleChange} />
+          <input
+            type="checkbox"
+            checked={checked}
+            onChange={() => handleChangeSatus(task)}
+          />
           <input
             value={task.todo}
             onChange={(e) => {
@@ -56,7 +61,7 @@ const DisplayItem: React.FC<DisplayItemProps> = ({
           <input
             type="checkbox"
             checked={checked}
-            onChange={handleChange}
+            onChange={() => handleChangeSatus(task)}
           />
           <p className="rounded-[4px] w-48 h-[30px] p-1 text-sm font-medium text-gray-500 border-transparent ">
             {todo.todo}
