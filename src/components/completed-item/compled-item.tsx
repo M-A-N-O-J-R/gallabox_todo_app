@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { Todo } from "../models/Todo";
+import type { Todo } from "../../models/Todo";
 
-interface DisplayItemProps {
+interface CompletedItemProps {
   todo: Todo;
   handleDelete: (id: number) => void;
   handleSave: (todo: Todo) => void;
   handleChange: (todo: Todo) => void;
 }
-const DisplayItem: React.FC<DisplayItemProps> = ({
+const CompletedItem: React.FC<CompletedItemProps> = ({
   todo,
   handleDelete,
   handleSave,
@@ -15,19 +15,24 @@ const DisplayItem: React.FC<DisplayItemProps> = ({
 }) => {
   const [edit, setEdit] = useState<boolean>(true);
   const [task, setTask] = useState<Todo>(todo);
-  const [checked, setChecked] = React.useState(false);
-  const handleChangeSatus = (task: Todo) => {
+  const [checked, setChecked] = React.useState(true);
+  const handleChangeSatus = (task: Todo): void => {
     setChecked(!checked);
     handleChange(task);
   };
   return (
-    <div className=" flex flex-col items-start justify-center gap-3">
+    <div
+      data-test="completed-item"
+      className=" flex flex-col items-start justify-center gap-3"
+    >
       {!edit ? (
         <div className="flex gap-5 justify-center items-center">
           <input
             type="checkbox"
             checked={checked}
-            onChange={() => handleChangeSatus(task)}
+            onChange={() => {
+              handleChangeSatus(task);
+            }}
           />
           <input
             value={task.todo}
@@ -61,9 +66,11 @@ const DisplayItem: React.FC<DisplayItemProps> = ({
           <input
             type="checkbox"
             checked={checked}
-            onChange={() => handleChangeSatus(task)}
+            onChange={(): void => {
+              handleChangeSatus(task);
+            }}
           />
-          <p className="rounded-[4px] w-48 h-[30px] p-1 text-sm font-medium text-gray-500 border-transparent ">
+          <p className="line-through rounded-[4px] w-48 h-[30px] p-1 text-sm font-medium text-gray-500 border-transparent ">
             {todo.todo}
           </p>
 
@@ -90,4 +97,4 @@ const DisplayItem: React.FC<DisplayItemProps> = ({
   );
 };
 
-export default DisplayItem;
+export default CompletedItem;

@@ -1,4 +1,4 @@
-import React,{useEffect, useRef} from "react";
+import React,{useEffect} from "react";
 
 interface AddItemProps {
   todo: string;
@@ -16,12 +16,16 @@ const AddItem: React.FC<AddItemProps> = ({
     inputRef?.current?.focus();
   }, []);
   return (
-    <div className=" flex flex-col items-start justify-center gap-3">
+    <div
+      data-test="add-item"
+      className=" flex flex-col items-start justify-center gap-3"
+    >
       <div className=" w-[300px] border-b-2 border-gray-800 flex justify-start items-center font-p_sans font-semibold text-sm">
         <p>ADD ITEM</p>
       </div>
       <div className="flex gap-4 justify-center items-center">
         <input
+          data-test="input"
           ref={inputRef}
           type={"text"}
           value={todo}

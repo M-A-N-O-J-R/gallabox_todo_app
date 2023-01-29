@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { Todo } from "../models/Todo";
-import DisplayItem from "./display-item";
+import React from "react";
+import { type Todo } from "../../models/Todo";
+import DisplayItem from "../display-item/display-item";
 
 interface DisplayItemsProps {
   todos: Todo[];
@@ -15,20 +15,23 @@ const DisplayItems: React.FC<DisplayItemsProps> = ({
   completedItems,
   setCompletedItems,
 }) => {
-  const handleDelete = (id: number) => {
+  const handleDelete = (id: number): void => {
     const newTodos = todos.filter((todo: Todo) => id !== todo.id);
     setTodos(newTodos);
   };
-  const handleSave = (task: Todo) => {
+  const handleSave = (task: Todo): void => {
     const newTodos = todos.filter((todo: Todo) => task.id !== todo.id);
     setTodos([...newTodos, task]);
   };
-  const handleChange = (task:Todo) =>{
+  const handleChange = (task: Todo): void => {
     handleDelete(task.id);
-    setCompletedItems([...completedItems,task]); 
-  }
+    setCompletedItems([...completedItems, task]);
+  };
   return (
-    <div className=" flex flex-col items-start justify-center gap-3">
+    <div
+      data-test="display-items"
+      className=" flex flex-col items-start justify-center gap-3"
+    >
       <div className=" w-[300px] border-b-2 border-gray-800 flex justify-start items-center font-p_sans font-semibold text-sm">
         <p>TODO</p>
       </div>

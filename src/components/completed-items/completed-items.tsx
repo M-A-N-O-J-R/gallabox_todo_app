@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import { Todo } from "../models/Todo";
-import CompletedItem from "./compled-item";
-import DisplayItem from "./display-item";
+import React from "react";
+import { type Todo } from "../../models/Todo";
+import CompletedItem from "../completed-item/compled-item";
 
 interface CompletedItemsProps {
   todos: Todo[];
@@ -16,20 +15,23 @@ const CompletedItems: React.FC<CompletedItemsProps> = ({
   completedItems,
   setCompletedItems,
 }) => {
-  const handleDelete = (id: number) => {
+  const handleDelete = (id: number): void => {
     const newTodos = completedItems.filter((todo: Todo) => id !== todo.id);
     setCompletedItems(newTodos);
   };
-  const handleSave = (task: Todo) => {
+  const handleSave = (task: Todo): void => {
     const newTodos = completedItems.filter((todo: Todo) => task.id !== todo.id);
     setCompletedItems([...newTodos, task]);
   };
-  const handleChange = (task: Todo) => {
+  const handleChange = (task: Todo): void => {
     handleDelete(task.id);
     setTodos([...todos, task]);
   };
   return (
-    <div className=" flex flex-col items-start justify-center gap-3">
+    <div
+      data-test="completed-items"
+      className=" flex flex-col items-start justify-center gap-3"
+    >
       <div className=" w-[300px] border-b-2 border-gray-800 flex justify-start items-center font-p_sans font-semibold text-sm">
         <p>COMPLETED</p>
       </div>
