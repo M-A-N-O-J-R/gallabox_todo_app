@@ -7,27 +7,6 @@ A basic local TODO web app
 ![TODO Sample UI](sample.png)
 
 
-## FRONT-END
-
-Clone the repository
-```bash
-  git clone https://github.com/M-A-N-O-J-R/gallabox_todo_app.git
-```
-
-Install dependencies
-```bash
-  npm install
-```
-
-test the server
-```bash
-  npm test
-```
-
-Start the Server
-```bash
-  npm start
-```
 
 ## BACK-END
 
@@ -52,6 +31,35 @@ Start the Server
 ```bash
   nodemon server.js
 ```
+
+PORT
+```bash
+  3000
+```
+
+
+## FRONT-END
+
+Clone the repository
+```bash
+  git clone https://github.com/M-A-N-O-J-R/gallabox_todo_app.git
+```
+
+Install dependencies
+```bash
+  npm install
+```
+
+test the server
+```bash
+  npm test
+```
+
+Start the Server
+```bash
+  npm start
+```
+
 
 
 ## Features
