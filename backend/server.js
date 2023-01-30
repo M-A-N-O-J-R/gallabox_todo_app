@@ -184,6 +184,6 @@ app.post("/submit", jsonParser, async (req, res) => {
   }
 });
 
-app.get("/", (req, res) => res.send("Server Running"));
+app.get("/", (req, res) => res.send("Server Running successfully"));
 
 app.listen(PORT, HOST, () => console.log(`app listening on port ${PORT}!`));
