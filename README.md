@@ -63,3 +63,4 @@ Start the Server
 - List the completed Items
 - Tested Individual Test using Jest (JavaScript testing framework)
 - ESLint 
+- Connected to notion database
