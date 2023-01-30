@@ -7,7 +7,6 @@ A basic local TODO web app
 ![TODO Sample UI](sample.png)
 
 
-
 ## BACK-END
 
 Go to the project directory
