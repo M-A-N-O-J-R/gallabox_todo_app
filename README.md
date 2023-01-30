@@ -7,7 +7,7 @@ A basic local TODO web app
 ![TODO Sample UI](sample.png)
 
 
-# FRONT-END
+## FRONT-END
 
 Clone the repository
 ```bash
@@ -29,7 +29,7 @@ Start the Server
   npm start
 ```
 
-# BACK-END
+## BACK-END
 
 Go to the project directory
 ```bash
