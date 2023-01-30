@@ -11,7 +11,7 @@ describe("Display Item component Tests", () => {
     ReactDOM.render(
       <DisplayItem
         todo={{ id: 12, todo: "Buy Milk" }}
-        handleDelete={function (id: number): void {
+        handleDelete={function (todo: Todo): void {
           throw new Error("Function not implemented.");
         }}
         handleSave={function (todo: Todo): void {

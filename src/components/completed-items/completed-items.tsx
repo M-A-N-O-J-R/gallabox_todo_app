@@ -18,14 +18,61 @@ const CompletedItems: React.FC<CompletedItemsProps> = ({
   const handleDelete = (id: number): void => {
     const newTodos = completedItems.filter((todo: Todo) => id !== todo.id);
     setCompletedItems(newTodos);
+    fetch(`http://localhost:3000/delete${id}`, {
+      method: "delete",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
   const handleSave = (task: Todo): void => {
     const newTodos = completedItems.filter((todo: Todo) => task.id !== todo.id);
     setCompletedItems([...newTodos, task]);
+    fetch(`http://localhost:3000/update${task.id}`, {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: task.id,
+        todo: task.todo,
+      }),
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
   const handleChange = (task: Todo): void => {
     handleDelete(task.id);
     setTodos([...todos, task]);
+    fetch("http://localhost:3000/submit", {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: task.id,
+        todo: task.todo,
+      }),
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
   return (
     <div

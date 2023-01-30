@@ -3,7 +3,7 @@ import { type Todo } from "../../models/Todo";
 
 interface DisplayItemProps {
   todo: Todo;
-  handleDelete: (id: number) => void;
+  handleDelete: (todo: Todo) => void;
   handleSave: (todo: Todo) => void;
   handleChange: (todo: Todo) => void;
 }
@@ -55,7 +55,7 @@ const DisplayItem: React.FC<DisplayItemProps> = ({
             className="text-sm text-gray-500 hover:text-gray-900 cursor-pointer font-medium"
             onClick={() => {
               console.log(todo.id);
-              handleDelete(todo.id);
+              handleDelete(todo);
             }}
           >
             Delete
@@ -85,7 +85,7 @@ const DisplayItem: React.FC<DisplayItemProps> = ({
           <p
             onClick={() => {
               console.log(todo.id);
-              handleDelete(todo.id);
+              handleDelete(todo);
             }}
             className="text-sm text-gray-500 hover:text-gray-900 cursor-pointer font-medium"
           >

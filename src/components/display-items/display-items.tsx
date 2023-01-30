@@ -15,17 +15,60 @@ const DisplayItems: React.FC<DisplayItemsProps> = ({
   completedItems,
   setCompletedItems,
 }) => {
-  const handleDelete = (id: number): void => {
-    const newTodos = todos.filter((todo: Todo) => id !== todo.id);
+  const handleDelete = (task: Todo): void => {
+    const newTodos = todos.filter((todo: Todo) => task.id !== todo.id);
     setTodos(newTodos);
+    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+    fetch(`http://localhost:3000/delete${task.id}`, {
+      method: "delete",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {console.log(res);})
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
   const handleSave = (task: Todo): void => {
     const newTodos = todos.filter((todo: Todo) => task.id !== todo.id);
     setTodos([...newTodos, task]);
+    fetch(`http://localhost:3000/update${task.id}`, {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: task.id,
+        todo: task.todo,
+      })
+    })
+      .then((res) => {console.log(res);})
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
   const handleChange = (task: Todo): void => {
-    handleDelete(task.id);
+    handleDelete(task);
     setCompletedItems([...completedItems, task]);
+    fetch("http://localhost:3000/done", {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: task.id,
+        todo: task.todo,
+      }),
+    })
+      .then((res) => {console.log(res);})
+      .catch((err) => {
+        console.log(err.message);
+      });
+
   };
   return (
     <div
