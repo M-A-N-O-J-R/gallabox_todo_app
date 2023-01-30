@@ -5,7 +5,6 @@ A basic local TODO web app
 ## Sample UI
 
 ![TODO Sample UI](sample.png)
-
 ## Features
 
 - Ability to add a new Item
@@ -15,3 +14,5 @@ A basic local TODO web app
 - List the completed Items
 - Tested Individual Test using Jest (JavaScript testing framework)
 - ESLint 
+
+
