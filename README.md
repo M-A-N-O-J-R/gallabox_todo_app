@@ -5,7 +5,6 @@ A basic local TODO web app
 ## Sample UI
 
 ![TODO Sample UI](sample.png)
-
 ## Features
 
 - Ability to add a new Item
