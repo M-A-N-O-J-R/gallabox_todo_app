@@ -17,22 +17,19 @@ Clone the repository
 ```
 
 Install dependencies
-
 ```bash
   npm install
 ```
 
 test
-
 ```bash
   npm test
-``
+```
 
 Start the Server
-
 ```bash
   npm start
-``
+```
 
 ## Features
 
